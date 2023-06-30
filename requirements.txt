@@ -1,0 +1,9 @@
+asgiref==3.4.1
+Django==3.2.19
+numpy==1.19.5
+Pillow==6.2.2
+pkg-resources==0.0.0
+pytz==2023.3
+scipy==1.5.4
+sqlparse==0.4.4
+typing-extensions==4.1.1
