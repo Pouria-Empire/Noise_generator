@@ -5,6 +5,9 @@ import numpy as np
 from PIL import Image
 import io
 
+def set_boundaries(a: int):
+    return max(min(a, 255), 0)
+    
 def process_image(request):
     if request.method == 'POST':
         image_file = request.FILES.get('image')
@@ -28,10 +31,10 @@ def process_image(request):
             # Modify DCT coefficients
             for i in range(height):
                 for j in range(width):
-                    if i > height/4 or j > width/4:
-                        red[i][j] = red[i][j] * 4 + 5
-                        green[i][j] *= 2
-                        blue[i][j] *= 2
+                    if i > height / 4 or j > width / 4:
+                        red[i][j] = set_boundaries(red[i][j] * 4 + 5)
+                        green[i][j] = set_boundaries(2 * green[i][j])
+                        blue[i][j] = set_boundaries(2 * blue[i][j])
 
             # Apply inverse DCT to modified coefficients
             imgmat2 = imgmat.copy()
